@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'rea
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native'
 
-import Shoes from '../../components/shoes';
+import Shoes from '../../components/Shoes';
 
 export default function Home() {
     const navigation = useNavigation();
@@ -49,7 +49,7 @@ export default function Home() {
                     <Shoes img={require('../../assets/3.png')} price="R$559,00" onClick={() => alert('Clicou')}>
                         Nike Squidward Tentacles
                     </Shoes>
-                    <Shoes img={require('../../assets/4.png')} price="R$219,90">
+                    <Shoes img={require('../../assets/4.png')} price="R$219,90" onClick={() => alert('Clicou')}>
                         Nike Epic React Flyknit 2
                     </Shoes>
                 </View>
