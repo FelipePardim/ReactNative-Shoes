@@ -2,7 +2,14 @@
     React Native Shoes.
 </h1>
 
-## A simple store app made with react native.
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/38081066/103036843-64bd7880-4549-11eb-9749-56c008acf440.png" />
+    <h2 align="center">
+        A simple shoes store app made with react native.
+    </h2>
+
+</p>
+
 
 <p align="center">
 	<img src="https://img.shields.io/github/stars/FelipePardim/ReactNative-Shoes" />
