@@ -24,7 +24,7 @@ function Routes(){
                     options={{
                         headerTitle: "Nike Downshifter 10",
                         headerRight: () => (
-                            <TouchableOpacity style={{ marginRight: 15}}>
+                            <TouchableOpacity style={{ marginRight: 25}}>
                                 <Feather 
                                     name="shopping-cart"
                                     color="black"

@@ -7,11 +7,6 @@ import Button from '../../components/Button';
 import Footer from '../../components/Footer';
 
 export default function Detail({ navigation }) {
-
-    // navigation.setOptions({
-    //     headerTitle: 'Nike Downshifter 10'
-    // })
-
     return (
         <ScrollView>
             <Image
@@ -29,18 +24,18 @@ export default function Detail({ navigation }) {
                 </View>
 
                 <View style={styles.dotContainer}>
-                    <Dot color='#2379f4' />
-                    <Dot color='#fb6e53' />
-                    <Dot color='#DDD' />
-                    <Dot color='#000' />
+                    <Dot color='#2379f4' selected={ true }/>
+                    <Dot color='#fb6e53' selected={ false }/>
+                    <Dot color='#DDD' selected={ false }/>
+                    <Dot color='#000' selected={ false }/>
                 </View>
 
                 <View style={{ flexDirection: 'row', width: '100%' }}>
                     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                        <SizeButton bgColor="#17181a" color="#FFF">40</SizeButton>
-                        <SizeButton>37</SizeButton>
-                        <SizeButton>39</SizeButton>
-                        <SizeButton>42</SizeButton>
+                        <SizeButton selected={ true }>40</SizeButton>
+                        <SizeButton selected={ false }>37</SizeButton>
+                        <SizeButton selected={ false }>39</SizeButton>
+                        <SizeButton selected={ false }>42</SizeButton>
                     </ScrollView>
                 </View>
 
@@ -85,7 +80,8 @@ const styles = StyleSheet.create({
     },
     dotContainer: {
         flexDirection: 'row',
-        marginVertical: '7%'
+        marginVertical: '7%',
+        justifyContent: 'center',
     },
     textContent: {
         fontSize: 16,
@@ -94,12 +90,14 @@ const styles = StyleSheet.create({
         paddingHorizontal: '2%'
     },
     textTitle: {
-        fontSize: 22,
-        marginVertical: '2%'
+        fontSize: 26,
+        marginVertical: '2%',
+        marginHorizontal: '2%'
     },
     textList: {
         fontSize: 16,
-        lineHeight: 25
+        lineHeight: 25,
+        marginHorizontal: '2%'
     },
     line: {
         borderWidth: 1,

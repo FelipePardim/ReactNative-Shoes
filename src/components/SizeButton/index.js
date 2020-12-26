@@ -1,14 +1,24 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 export default function SizeButton( props ) {
-    return (
-        <View style={[styles.container, { backgroundColor: props.bgColor || '#FFF' } ]}>
-            <Text style={[styles.text, { color: props.color || '#DDD'} ]}>
-                {props.children}
-            </Text>
-        </View>
-    );
+    if ( props.selected === true ) {
+        return (
+            <TouchableOpacity style={[styles.container, { backgroundColor: '#17181a' } ]} >
+                <Text style={[styles.text, { color: '#FFF'} ]}>
+                    {props.children}
+                </Text>
+            </TouchableOpacity>
+        );
+    } else {
+        return (
+            <TouchableOpacity style={[styles.container, { backgroundColor: props.bgColor || '#FFF' } ]} >
+                <Text style={[styles.text, { color: props.color || '#DDD'} ]}>
+                    {props.children}
+                </Text>
+            </TouchableOpacity>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
