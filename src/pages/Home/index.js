@@ -9,7 +9,11 @@ export default function Home() {
     const navigation = useNavigation();
 
     // Man = true - Woman - false
-    const manFilter = true;
+    const [manFilter, setManFilter] = useState(true);
+
+    useEffect(() => {
+        // Change the display shoes
+    }, [manFilter])
 
     return (
         <View style={styles.container}>
@@ -29,7 +33,7 @@ export default function Home() {
                             name="filter-list"
                             size={24}
                             color="#000"
-                            onClick={ () => setGenreIsMasc }
+                            onPress={() => setManFilter(!manFilter)}
                         />
                     </TouchableOpacity>
 
@@ -42,10 +46,10 @@ export default function Home() {
                 <Text style={styles.text}>LANÇAMENTOS</Text>
 
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                    <Shoes img={require('../../assets/1.png')} price="R$140,90" onClick={() => navigation.navigate('Detail')}>
+                    <Shoes img={require('../../assets/1.png')} price="R$140,90" onClick={() => navigation.navigate('Detail', { id: 123 })}>
                         Nike Air Max 3
                     </Shoes>
-                    <Shoes img={require('../../assets/2.png')} price="R$279,90" onClick={() => navigation.navigate('Detail')}>
+                    <Shoes img={require('../../assets/2.png')} price="R$279,90" onClick={() => navigation.navigate('Detail', { id: 321})}>
                         Nike Downshifter 10
                     </Shoes>
                 </View>

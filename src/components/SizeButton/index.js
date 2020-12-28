@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 export default function SizeButton( props ) {
-    if ( props.selected === true ) {
+    if ( props.children == props.shoeSize ) {
         return (
-            <TouchableOpacity style={[styles.container, { backgroundColor: '#17181a' } ]} >
+            <TouchableOpacity style={[styles.container, { backgroundColor: '#17181a' } ]} onPress={() => props.handleSize(props.children)}>
                 <Text style={[styles.text, { color: '#FFF'} ]}>
                     {props.children}
                 </Text>
@@ -12,7 +12,7 @@ export default function SizeButton( props ) {
         );
     } else {
         return (
-            <TouchableOpacity style={[styles.container, { backgroundColor: props.bgColor || '#FFF' } ]} >
+            <TouchableOpacity style={[styles.container, { backgroundColor: props.bgColor || '#FFF' } ]} onPress={() => props.handleSize(props.children)}>
                 <Text style={[styles.text, { color: props.color || '#DDD'} ]}>
                     {props.children}
                 </Text>

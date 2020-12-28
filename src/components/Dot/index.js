@@ -1,14 +1,18 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { TouchableOpacity, StyleSheet, Dimensions, View } from 'react-native';
 
 export default function Dot( props ) {
     if (props.selected === true) {
         return (
-            <TouchableOpacity style={[styles.container, styles.selected,{ backgroundColor: props.color } ]} />
+            <View>
+                <TouchableOpacity style={[styles.container, styles.selected,{ backgroundColor: props.color } ]} onPress={() => props.handleColor(props.color)}/>
+            </View>
             );
         } else {
             return (
-            <TouchableOpacity style={[styles.container, { backgroundColor: props.color } ]} />
+                <View>
+                    <TouchableOpacity style={[styles.container, { backgroundColor: props.color } ]} onPress={() => props.handleColor(props.color)}/>
+                </View>
         );
     }
 
@@ -24,9 +28,9 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     selected: {
-        width: Dimensions.get('window').width * 0.090,
-        height: Dimensions.get('window').width * 0.090,
-        borderRadius: Dimensions.get('window').width * 0.090 / 2,
+        width: Dimensions.get('window').width * 0.1,
+        height: Dimensions.get('window').width * 0.1,
+        borderRadius: Dimensions.get('window').width * 0.1 / 2,
         marginHorizontal: '5.5%',
         alignSelf: 'center',
         elevation: 7,

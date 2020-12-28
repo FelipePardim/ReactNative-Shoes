@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, ScrollView, StyleSheet } from 'react-native';
+import { useRoute } from '@react-navigation/native';
 
 import Dot from '../../components/Dot';
 import SizeButton from '../../components/SizeButton';
@@ -7,6 +8,23 @@ import Button from '../../components/Button';
 import Footer from '../../components/Footer';
 
 export default function Detail({ navigation }) {
+    const route = useRoute();
+    const params = route.params;
+
+    const shoeId = params.id;
+    let [size, setSize] = useState('39');
+    let [color, setColor] = useState('#000');
+
+    useEffect(() => {}, [size]);
+
+    function handleSize(chosedSize) {
+        setSize(chosedSize);
+    }
+
+    function handleColor(chosedColor) {
+        setColor(chosedColor);
+    }
+
     return (
         <ScrollView>
             <Image
@@ -24,18 +42,18 @@ export default function Detail({ navigation }) {
                 </View>
 
                 <View style={styles.dotContainer}>
-                    <Dot color='#2379f4' selected={ true }/>
-                    <Dot color='#fb6e53' selected={ false }/>
-                    <Dot color='#DDD' selected={ false }/>
-                    <Dot color='#000' selected={ false }/>
+                    <Dot color='#2379f4' selected={ color == '#2379f4' ? true : false } handleColor={handleColor}/>
+                    <Dot color='#fb6e53' selected={ color == '#fb6e53' ? true : false } handleColor={handleColor}/>
+                    <Dot color='#DDD' selected={ color == '#DDD' ? true : false } handleColor={handleColor}/>
+                    <Dot color='#000' selected={ color == '#000' ? true : false } handleColor={handleColor}/>
                 </View>
 
                 <View style={{ flexDirection: 'row', width: '100%' }}>
                     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                        <SizeButton selected={ true }>40</SizeButton>
-                        <SizeButton selected={ false }>37</SizeButton>
-                        <SizeButton selected={ false }>39</SizeButton>
-                        <SizeButton selected={ false }>42</SizeButton>
+                        <SizeButton selected={ size == 37 ? true : false } shoeSize={size} handleSize={handleSize}>37</SizeButton>
+                        <SizeButton selected={ size == 39 ? true : false } shoeSize={size} handleSize={handleSize}>39</SizeButton>
+                        <SizeButton selected={ size == 40 ? true : false } shoeSize={size} handleSize={handleSize}>40</SizeButton>
+                        <SizeButton selected={ size == 42 ? true : false } shoeSize={size} handleSize={handleSize}>42</SizeButton>
                     </ScrollView>
                 </View>
 
