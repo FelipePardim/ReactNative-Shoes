@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, Image, ScrollView, StyleSheet, TextInputBase } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 
 import Dot from '../../components/Dot';
@@ -12,17 +12,29 @@ export default function Detail({ navigation }) {
     const params = route.params;
 
     const shoeId = params.id;
-    let [size, setSize] = useState('39');
-    let [color, setColor] = useState('#000');
+    let [selectedSize, setSelectedSize] = useState('39');
+    let [selectedColor, setSelectedColor] = useState('#000');
 
-    useEffect(() => {}, [size]);
+    let shoes = {
+        id: '123',
+        name: 'Nike Downshifter 10',
+        price: '280,90',
+        sizes: [37, 39, 40, 42],
+        colors: ['#2379f4', '#fb6e53', '#DDD', '#000'],
+        description: 'Lorem ipslumo oasokd asidinnw daso doa dojie idmwje b99ane asdwd iasj dieaid e i a',
+        material: 'Mesh',
+        categorie: 'Run',
+        manFilter: false
+    };
+
+    useEffect(() => { }, [selectedSize]);
 
     function handleSize(chosedSize) {
-        setSize(chosedSize);
+        setSelectedSize(chosedSize);
     }
 
     function handleColor(chosedColor) {
-        setColor(chosedColor);
+        setSelectedColor(chosedColor);
     }
 
     return (
@@ -35,40 +47,42 @@ export default function Detail({ navigation }) {
 
             <View>
                 <View>
-                    <Text style={[styles.title, { fontSize: 24 }]}>R$ 280,90</Text>
+                    <Text style={[styles.title, { fontSize: 24 }]}>R$ {shoes.price}</Text>
                 </View>
                 <View opacity={0.4}>
-                    <Text style={[styles.title, { fontSize: 30 }]}>Nike Downshifter 10</Text>
+                    <Text style={[styles.title, { fontSize: 30 }]}>{shoes.name}</Text>
                 </View>
 
                 <View style={styles.dotContainer}>
-                    <Dot color='#2379f4' selected={ color == '#2379f4' ? true : false } handleColor={handleColor}/>
-                    <Dot color='#fb6e53' selected={ color == '#fb6e53' ? true : false } handleColor={handleColor}/>
-                    <Dot color='#DDD' selected={ color == '#DDD' ? true : false } handleColor={handleColor}/>
-                    <Dot color='#000' selected={ color == '#000' ? true : false } handleColor={handleColor}/>
+                    {shoes.colors.map(color => {
+                        return (
+                            <Dot key={shoes.colors.color} color={color} selected={selectedColor == color ? true : false} handleColor={handleColor} />
+                        )
+                    })}
                 </View>
 
                 <View style={{ flexDirection: 'row', width: '100%' }}>
                     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                        <SizeButton selected={ size == 37 ? true : false } shoeSize={size} handleSize={handleSize}>37</SizeButton>
-                        <SizeButton selected={ size == 39 ? true : false } shoeSize={size} handleSize={handleSize}>39</SizeButton>
-                        <SizeButton selected={ size == 40 ? true : false } shoeSize={size} handleSize={handleSize}>40</SizeButton>
-                        <SizeButton selected={ size == 42 ? true : false } shoeSize={size} handleSize={handleSize}>42</SizeButton>
+                        {shoes.sizes.map(size => {
+                            return (
+                                <SizeButton key={shoes.sizes.size} selected={selectedSize == size ? true : false} shoeSize={selectedSize} handleSize={handleSize}>{size}</SizeButton>
+                            )
+                        })}
                     </ScrollView>
                 </View>
 
                 <View>
                     <Text style={styles.textTitle}>
-                        Nike Downshifter 10
+                        {shoes.name}
                     </Text>
                     <Text style={styles.textContent}>
-                        Lorem ipslumo oasokd asidinnw daso doa dojie idmwje b99ane asdwd iasj dieaid e i a
+                        {shoes.description}
                     </Text>
                     <Text style={styles.textList}>
-                        - Categoria: Amortecimento
+                        - Categoria: {shoes.categorie}
                     </Text>
                     <Text style={styles.textList}>
-                        - Material: Mesh
+                        - Material: {shoes.material}
                     </Text>
                 </View>
 
@@ -100,6 +114,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginVertical: '7%',
         justifyContent: 'center',
+        alignItems: 'center'
     },
     textContent: {
         fontSize: 16,
