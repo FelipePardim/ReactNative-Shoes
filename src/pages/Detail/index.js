@@ -24,7 +24,8 @@ export default function Detail({ navigation }) {
         description: 'Lorem ipslumo oasokd asidinnw daso doa dojie idmwje b99ane asdwd iasj dieaid e i a',
         material: 'Mesh',
         categorie: 'Run',
-        manFilter: false
+        manFilter: false,
+        imgSrc: '../../assets/detail.png'
     };
 
     useEffect(() => { }, [selectedSize]);
@@ -56,7 +57,7 @@ export default function Detail({ navigation }) {
                 <View style={styles.dotContainer}>
                     {shoes.colors.map(color => {
                         return (
-                            <Dot key={shoes.colors.color} color={color} selected={selectedColor == color ? true : false} handleColor={handleColor} />
+                            <Dot key={color} color={color} selected={selectedColor == color ? true : false} handleColor={handleColor} />
                         )
                     })}
                 </View>
@@ -65,7 +66,7 @@ export default function Detail({ navigation }) {
                     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                         {shoes.sizes.map(size => {
                             return (
-                                <SizeButton key={shoes.sizes.size} selected={selectedSize == size ? true : false} shoeSize={selectedSize} handleSize={handleSize}>{size}</SizeButton>
+                                <SizeButton key={size} selected={selectedSize == size ? true : false} shoeSize={selectedSize} handleSize={handleSize}>{size}</SizeButton>
                             )
                         })}
                     </ScrollView>
